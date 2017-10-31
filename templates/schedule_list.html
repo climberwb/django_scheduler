@@ -1,0 +1,19 @@
+<h1>create a new schedule!</h1>
+
+
+
+</form>
+    <form method="POST">
+        {% csrf_token %}
+        {{ schedule_form }}
+        <input type="submit" value="New Schedule" class="">
+    </form>
+<ul>
+    {% for schedule in schedules %}
+        <li><a href="{% url 'schedules:show' schedule_id=schedule.id %}">{{schedule.name }}: {{schedule.created_at}}</a> </li>
+    {% endfor %}    
+<ul/>
+
+
+
+    

@@ -1,0 +1,9 @@
+<h1>create a new activity!</h1>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <table>
+        {{ activity_form }}
+    </table>
+    <input type="submit" value="New Activity" class="">
+</form>

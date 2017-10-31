@@ -1,0 +1,41 @@
+<h1>{{schedule.name}}</h1>
+{% if activities %}
+<table>
+    <tr>
+        <th>name</th>
+        <th>start time</th> 
+        <th>end time</th>
+        <th>importance</th>
+        <th>delete</th>
+      </tr>
+    {% for activity in activities %}
+      <tr>
+          <td>{{activity.name}}</td> 
+          <td>{{activity.start}}</td> 
+          <td>{{activity.end}}</td> 
+          <td>{{activity.rank}}</td> 
+          <td>
+              <form action="{% url 'schedules:activity-delete' schedule_id=schedule.id activity_id=activity.id %}"  method="POST">
+                {% csrf_token %}
+                {{ schedule_form }}
+                <input type="submit" value="delete activity" class="">
+              </form>
+        </td> 
+    </tr>  
+    {% endfor %}
+    <tr>
+        <td><a href="{% url 'schedules:activity-create' schedule_id=schedule.id %}">add activity</td>
+    </tr>
+</table>
+{%else %}
+ <p>you have no activities yet please <a href="{% url 'schedules:activity-create' schedule_id=schedule.id %}">add one</a>!</p>
+{% endif %}
+
+
+
+    
+<form method="POST">
+    {% csrf_token %}
+    {{ schedule_form }}
+    <input type="submit" value="delete schedule" class="">
+</form>
